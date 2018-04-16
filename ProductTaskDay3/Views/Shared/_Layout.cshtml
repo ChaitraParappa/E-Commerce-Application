@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Ecommerece App", "", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                @if (Session["UserName"] == null)
+                {
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li>@Html.ActionLink("Dummy", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("SignUp", "SignUpCustomer", "Profile")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Profile")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                   
+
+                </ul>
+                }
+                else if(Session["UserName"] != null && Session["Role"]=="Merchant")
+                {
+                    <ul class="nav navbar-nav navbar-left">
+                        <li> @Html.ActionLink("Product List", "Display", "Home")</li>
+                        <li>@Html.ActionLink("Add Product", "AddingProduct", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                        <li>@Html.ActionLink("LogOut", "Logout", "Profile")</li>
+                    </ul>
+
+                }
+                else if (Session["UserName"] != null && Session["Role"] == "Customer")
+                {
+                    <ul class="nav navbar-nav navbar-left">
+                        <li> @Html.ActionLink("Shopping Cart", "DisplayingCart", "Home")</li>
+                        <li>@Html.ActionLink("Add Product", "AddingCart", "Home")</li>
+      
+                    </ul>
+                    <ul class="nav navbar-nav navbar-left" style="margin-top:10px;">
+                        @using (Html.BeginForm("SearchingProduct", "Search", FormMethod.Get))
+                        {
+
+                            @Html.TextBox("search")
+                            <input type="submit" value="Search" />
+                        }
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>@Html.ActionLink("LogOut", "Logout", "Profile")</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

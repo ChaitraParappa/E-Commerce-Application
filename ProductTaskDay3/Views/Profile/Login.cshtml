@@ -1,0 +1,31 @@
+﻿@model ProductTaskDay3.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Login</h2></center>
+<br/><br/>
+
+@using (Html.BeginForm("Login", "Profile", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+    @Html.LabelFor(x => x.Username)</td><td>@Html.TextBoxFor(x => x.Username)
+            </td>
+        </tr>
+        <tr><td></td><td>@Html.Label("hint:Enter your email-id")</td></tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Password)
+            </td>
+            <td>@Html.PasswordFor(x => x.Password)</td>
+        </tr>
+      <tr><td></td>
+        <td>  <input type="submit" value="Login" /></td></tr>
+    </table>
+}
+
+

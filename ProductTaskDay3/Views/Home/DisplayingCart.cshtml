@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProductTaskDay3.Models.Product>
+
+@{
+    ViewBag.Title = "DisplayingCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<center>
+    <h2> Your Cart Details</h2>
+</center><br/>
+<br /><br />
+<table class="table">
+    <tr>
+       <th>
+        
+       </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            <img src="@item.image"  alt="noimage" />
+        </td>
+       
+    </tr>
+}
+
+</table>

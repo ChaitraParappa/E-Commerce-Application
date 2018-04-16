@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProductTaskDay3.Models.Product>
+
+@{
+    ViewBag.Title = "Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/><br/>
+<p>
+    @Html.ActionLink("Add Product", "AddingProduct","Home")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagelist)
+        </th>
+        <th>@Html.Label("Option")</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+       @foreach (var image in item.imagelist)
+       {
+        <td>
+            <img src=@image.thumbnail_url alt="noimage" />
+        </td>
+       }
+        
+        <td>
+            @Html.ActionLink("DeletingProduct", "DeletingProduct", "Home", new { Name = item.Name, Description = item.Description, Price = item.Price }, null)
+        </td>
+        <td>
+@using (Html.BeginForm("AddImages", "Home", new {id = item.id, UserId=item.UserId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(modelItem=>item.id)
+    @Html.HiddenFor(modelItem=>item.UserId)
+        <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+        <input type="submit" value="AddImage" />
+}
+        </td>
+       
+    </tr>
+        
+    }
+
+</table>

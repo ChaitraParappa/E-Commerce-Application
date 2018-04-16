@@ -1,0 +1,88 @@
+﻿@model ProductTaskDay3.Models.Product
+
+@{
+    ViewBag.Title = "AddingProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+
+    <h3>Adding Products</h3>
+    <br/>
+    <br/>
+    <br />
+<table>
+    <tr>
+        <td><label>@Html.RadioButton("Product", true) Add Product</label></td>
+        <td><label>@Html.RadioButton("Sheet", true) Upload Excel Sheet</label></td>
+    </tr>
+</table>
+
+
+    <div id="id1">
+        @using (Html.BeginForm("AddingProduct", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <br /><br />
+            <table class="table">
+
+                <tr>
+                    <td>@Html.LabelFor(x => x.Name)</td>
+                    <td>@Html.TextBoxFor(x => x.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Description)</td>
+                    <td>@Html.TextBoxFor(x => x.Description)</td>
+                </tr>
+                <tr>
+                    <td>  @Html.LabelFor(x => x.Price)</td>
+                    <td>@Html.TextBoxFor(x => x.Price)</td>
+                </tr>
+                <tr>
+                    <td>  @Html.LabelFor(x => x.Quantity)</td>
+                    <td>@Html.TextBoxFor(x => x.Quantity)</td>
+                </tr>
+                <tr>
+                    <td> <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="AddProduct" />
+                    </td>
+                </tr>
+            </table>
+
+        }
+    </div>
+    <div id="id2">
+        @using (Html.BeginForm("Importexcel1", "UploadExcel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            
+            <input type="file" name="FileUpload1" id="FileUpload1" onchange="fileCheck(this);" />
+            <input type="submit" value="Upload" />
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#id1").hide();
+        $("#id2").hide();
+
+        $('input[name=Product]').click(function () {
+            $("#id1").show();
+            $("#id2").hide();
+
+
+
+        });
+        $('input[name=Sheet]').click(function () {
+            $("#id1").hide();
+            $("#id2").show();
+        });
+
+    })
+
+</script>

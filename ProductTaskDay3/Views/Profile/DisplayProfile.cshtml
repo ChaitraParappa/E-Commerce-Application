@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "DisplayProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/><br />
+<center><h2>Your Profile</h2></center>
+<br /><br />
+
+
+<table>
+    <tr>
+        <td>@Html.Label("Username")</td>
+        <td>@ViewBag.Username</td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Fullname")</td>
+        <td>@ViewBag.fullname</td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Address")</td>
+        <td>@ViewBag.address</td>
+    </tr>
+    <tr>
+        <td>@Html.Label("MobileNumber")</td>
+        <td>@ViewBag.MobileNumber</td>
+    </tr>
+
+</table>
+
+

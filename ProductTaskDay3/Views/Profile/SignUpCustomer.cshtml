@@ -1,0 +1,110 @@
+﻿@model ProductTaskDay3.Models.SignUp
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<center><h2>SignUp</h2></center>
+<br />
+<div>
+
+
+    <table>
+        <tr>
+            <td><label>@Html.RadioButton("Merchant", false) Merchant</label></td>
+            <td><label>@Html.RadioButton("Customer", true) Customer</label></td>
+        </tr>
+    </table>
+
+
+<div id="id2">
+@using (Html.BeginForm("SignUpCustomer", "Profile", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Username)
+            </td>
+            <td>@Html.TextBoxFor(x => x.Username)</td>
+        </tr>
+        <tr><td></td><td>@Html.Label("hint:Enter your email-id")</td></tr>
+        <tr><td>@Html.LabelFor(x => x.Fullname)</td><td>@Html.TextBoxFor(x => x.Fullname)</td></tr>
+
+        <tr><td>    @Html.LabelFor(x => x.Password)</td><td>@Html.PasswordFor(x => x.Password)</td></tr>
+        <tr><td> @Html.LabelFor(x => x.Address)</td> <td>@Html.TextBoxFor(x => x.Address)</td></tr>
+        <tr><td>  @Html.LabelFor(x => x.Mobilenumber)</td><td>@Html.TextBoxFor(x => x.Mobilenumber)</td></tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Register" /></td>
+        </tr>
+        </table>
+}
+</div>
+
+<div id="id1">
+    @using (Html.BeginForm("SignUpMerchant", "Profile", FormMethod.Post))
+    {
+    <table>
+       <tr>
+            <td>@Html.LabelFor(x => x.Username)</td>
+            <td>@Html.TextBoxFor(x => x.Username)</td>
+        </tr>
+        <tr><td></td><td>@Html.Label("hint:Enter your email-id")</td></tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Fullname)</td>
+            <td>@Html.TextBoxFor(x => x.Fullname)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Password)</td>
+            <td>@Html.PasswordFor(x => x.Password)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.ContactNumber)</td>
+            <td>@Html.TextBoxFor(x => x.ContactNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.BusinessAddress)</td>
+            <td>@Html.TextBoxFor(x => x.BusinessAddress)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.ContactPerson)</td>
+            <td>@Html.TextBoxFor(x => x.ContactPerson)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Register" /></td>
+        </tr>
+
+    </table>
+    }
+
+</div>
+    </div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#id1").hide();
+        $("#id2").hide();
+
+        $('input[name=Merchant]').click(function () {
+           $("#id1").show();
+           $("#id2").hide();
+
+
+
+        });
+        $('input[name=Customer]').click(function () {
+           $("#id1").hide();
+           $("#id2").show();
+
+
+        });
+       
+    })
+
+</script>
+
+
